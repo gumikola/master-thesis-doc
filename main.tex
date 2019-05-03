@@ -1,0 +1,59 @@
+\documentclass[printmode]{mgr}
+%opcje klasy dokumentu mgr.cls zostały opisane w dołączonej instrukcji
+
+%poniżej deklaracje użycia pakietów, usunąć to co jest niepotrzebne
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+
+%pakiety do grafiki
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{psfrag}
+
+%pakiety dodające dużo dodatkowych poleceń matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%pakiety wspomagające i poprawiające składanie tabel
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+%pakiet wypisujący na marginesie etykiety równań i rysunków
+%zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
+%dokumentu wystarczy usunąć poniższą linię
+\usepackage{showlabels}
+
+%dane do złożenia strony tytułowej
+\title{Optymalizacja procesu produkcji urządzeń elektronicznych}
+\engtitle{Optimization of electronic devices manufacturing process}
+\author{Mikołaj Guz}
+\supervisor{dr hab. Mieczysław Wodecki}
+
+\date{2019} %standardowo u dołu strony tytułowej umieszczany jest bieżący rok, to polecenie pozwala wstawić dowolny rok
+
+%poniżej jest lista kierunków i specjalności na wydziale elektroniki,
+%należy wybrać właściwe lub dopisać jeśli nie ma odpowiednich
+\field{Automatyka i Robotyka (AIR)}
+\specialisation{Technologie informacyjne w systemach automatyki (ART)}
+
+
+%tutaj zaczyna się właściwa treść dokumentu
+\begin{document}
+
+\maketitle %polecenie generujące stronę tytułową 
+
+\tableofcontents %spis treści
+
+\include{chapters/chapter_1}
+
+\addcontentsline{toc}{chapter}{\bibname} %utworzenie w spisietreści pozycji Literatura
+
+\bibliography{bibliography} % wstawia bibliografię korzystając z pliku
+\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+
+%opcjonalnie może się tu pojawić spis rysunków i tabel
+% \listoffigures
+% \listoftables
+\end{document}
