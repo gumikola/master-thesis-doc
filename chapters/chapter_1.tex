@@ -2,6 +2,7 @@
 
 \section{Opis procesu}
 
+\paragraph{}
 Proces badany w pracy to linia montująca płyty drukowane do finalnych produktów. Sam proces składa się z kilku etapów:
 \begin{enumerate}
 	\item Pobranie potrzebnych elementów elektronicznych z magazynu.
@@ -12,4 +13,16 @@ Proces badany w pracy to linia montująca płyty drukowane do finalnych produkt�
 	\item (Opcjonalnie) Umieszczenie ręczne elementów
 	\item Przeprowadzenie procesu lutowania w piecu.
 	\item (Opcjonalnie) Lutowanie ręczne
+	\item (Opcjonalnie) Kontrola gotowej płyty PCB
 \end{enumerate}
+
+\paragraph{}
+Ograniczenia procesu:
+\begin{itemize}
+	\item Wszystkie procedury muszą być wykonane w ustalonej kolejności
+	\item Dla płyt dwustronnych należy powtórzyć sekwencję od punktu 4 do punktu 7
+	\item Pick\&place może obsługiwać tylko jedną płytę PCB
+	\item Piec lutowniczy może lutować kilka płyt drukowanych (ilość jest zależna od rozmiaru płyt)
+\end{itemize}
+
+\includegraphics{chapters/graph.png}
