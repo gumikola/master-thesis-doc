@@ -2,8 +2,9 @@
 %opcje klasy dokumentu mgr.cls zostały opisane w dołączonej instrukcji
 
 %poniżej deklaracje użycia pakietów, usunąć to co jest niepotrzebne
-\usepackage{polski}
+\usepackage[polish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 
 %pakiety do grafiki
 \usepackage{graphicx}
@@ -42,13 +43,13 @@
 %tutaj zaczyna się właściwa treść dokumentu
 \begin{document}
 
-\maketitle %polecenie generujące stronę tytułową 
+\maketitle %polecenie generujące stronę tytułową
 
 \tableofcontents %spis treści
 
 \include{chapters/chapter_1}
 
-\addcontentsline{toc}{chapter}{\bibname} %utworzenie w spisietreści pozycji Literatura
+\addcontentsline{toc}{chapter}{\bibname} %utworzenie w spisie treści pozycji Literatura
 
 \bibliography{bibliography} % wstawia bibliografię korzystając z pliku
 \bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
