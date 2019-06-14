@@ -30,13 +30,13 @@ Cechy procesu:
 \includegraphics[scale=0.9]{chapters/graph.png}
 
 Niebieskie strzałki wyznaczają ścieżkę krytyczną procesu.
-Węzły o krawędziach przerywanych są to operacje zależne od projektu płyty PCB.
+Węzły o krawędziach przerywanych są to operacje zależne od projektu płyty PCB\@.
 
 
 
 \section{Model matematyczny}
 Problem poruszany w pracy to problem przepływowy (ang. Flow Shop) z przezbrojeniem maszyn.
-W procesie jest wykorzystywane 6 stanowisk(maszyn) które składają się na cały proces.
+W procesie jest wykorzystywane 6 stanowisk (maszyn) które składają się na cały proces.
 W procesie na dwóch maszynach wykonuję sie przezbrojenie. Jest to stanowisko z sitodrukiem oraz pick\&place.
 
 Zbiór maszyn
@@ -59,9 +59,9 @@ Zadanie $j \in J$ jest ciągiem $m$ operacji:
 
 Zmienne w modelu:
 \begin{itemize}
-	\item $p_{k,j}$ - czas trwania operacji z zadania $j$ na maszynie $k$
-	\item $S_{k,j}$ - moment rozpoczęcia operacji z zadania $j$ na maszynie $k$
-	\item $C_{k,j}$ - moment zakończenia operacji z zadania $j$ na maszynie $k$
+	\item $p_{k,j}$ --- czas trwania operacji z zadania $j$ na maszynie $k$
+	\item $S_{k,j}$ --- moment rozpoczęcia operacji z zadania $j$ na maszynie $k$
+	\item $C_{k,j}$ --- moment zakończenia operacji z zadania $j$ na maszynie $k$
 \end{itemize}
 
 Czas przezbrojenia pomiędzy zadaniem $i$ oraz $j$ na $k$-tej maszynie to $s_{i,j}^{k}$ gdzie:
@@ -74,7 +74,7 @@ Permutacja zadań $\pi = \lbrace \pi(1),\pi(1),\dots,\pi(n) \rbrace$ gdzie $n$ t
 
 Moment początkowy operacji:
 \begin{equation}
-	S_{k,\pi(j)}=max\{C_{k-1,\pi(j)},C_{k,\pi(j-1)}+s^k_{\pi(j-1),\pi(j)}\},
+	S_{k,\pi(j)}=\max\{C_{k-1,\pi(j)},C_{k,\pi(j-1)}+s^k_{\pi(j-1),\pi(j)}\},
 \end{equation}
 
 Obliczenie momentu zakończenia operacji:
@@ -91,13 +91,13 @@ Moment początkowy procesu:
 
 Moment końcowy procesu:
 \begin{equation}
-	C_{max} = 	C_{m,\pi(n)} = S_{m,\pi(n)} + p_{m,\pi(n)}
+	C_{\max} = 	C_{m,\pi(n)} = S_{m,\pi(n)} + p_{m,\pi(n)}
 \end{equation}
 
 W naszym przypadku optymalizacja procesu będzie polegała na wyznaczeniu optymalnej permutacji zadań $\pi^*$
-w celu znalezienia minimalnego czasu $C_{max}$
+w celu znalezienia minimalnego czasu $C_{\max}$
 \begin{equation}
-	C_{max}^{*} = min\{C_{m,\pi(n)^{*}}\}
+	C_{\max}^{*} = \min\{C_{m,\pi{(n)}^{*}}\}
 \end{equation}
 
 \newpage
