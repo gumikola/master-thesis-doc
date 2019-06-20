@@ -11,7 +11,7 @@ stages:
 lint:
     stage: test
     script:
-    - chktex main.tex
+    - chktex main.tex -n 24
 
 build:
     stage: build

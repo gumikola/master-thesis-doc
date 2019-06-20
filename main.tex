@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{psfrag}
+\usepackage{float}
 
 %pakiety dodające dużo dodatkowych poleceń matematycznych
 \usepackage{amsmath}
@@ -25,6 +26,7 @@
 %zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
 %dokumentu wystarczy usunąć poniższą linię
 \usepackage{showlabels}
+\usepackage{url}
 
 %dane do złożenia strony tytułowej
 \title{Optymalizacja procesu produkcji urządzeń elektronicznych}
@@ -47,12 +49,19 @@
 
 \tableofcontents %spis treści
 
-\include{chapters/chapter_1}
+\include{chapters/chapter1/chapter}
+\include{chapters/chapter2/chapter}
+\include{chapters/chapter3/chapter}
+\include{chapters/chapter4/chapter}
+\include{chapters/chapter5/chapter}
+\include{chapters/chapter6/chapter}
 
 \addcontentsline{toc}{chapter}{\bibname} %utworzenie w spisie treści pozycji Literatura
 
-\bibliography{bibliography} % wstawia bibliografię korzystając z pliku
-\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+\raggedright{
+	\bibliography{bibliography} % wstawia bibliografię korzystając z pliku
+	\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+}
 
 %opcjonalnie może się tu pojawić spis rysunków i tabel
 % \listoffigures
