@@ -56,19 +56,68 @@ W naszym przypadku używany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Ope
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{./chapters/chapter2/sitodruk.jpg}
+	\includegraphics[scale=0.25]{./chapters/chapter2/sitodruk.jpg}
 	\caption{Urządzenie sitodruku manualnego~\cite{sitodruk}}
 	\label{sitodruk}
 \end{figure}
 
 \subsection{Automat pick\&place}
-Automat pick and place to maszyna która umożliwia za pomocą systemu wizyjnego w precyzyjny sposób układać komponenty SMD na płytkach PCB~\cite{automatp&p}. W procesie badanym wykorzystywany jest automat (tu się doda model wykorzystywany w firmie, dorzucę jakieś zdjęcie oraz specyfikacje krótką)
+Automat pick and place to maszyna która umożliwia za pomocą systemu wizyjnego w precyzyjny sposób układać komponenty SMD na płytkach PCB~\cite{automatp&p1}. W procesie badanym wykorzystywany jest automat M10V firmy Mechatronika (Rysunek~\ref{automat_pick_place}). Średnia wydajność maszyny plasuję się na ok. 1200 --- 1600 komponentów na godzinę.
+
+Cechy maszyny~\cite{automatp&p2}:
+\begin{itemize}
+	\item wbudowany system wizyjny,
+	\item pełna automatyzacja nanoszenia elementów na płytę drukowaną,
+	\item automatyczna korekcja na podstawie znaczników (ang.\ fiducials),
+	\item korygowanie elementów na podstawie wykrycia złych oznaczeń na płycie,
+	\item automatyczna zmiana dysz,
+	\item automatyczne podawanie luźnych elementów (po wcześniejszej kalibracji),
+	\item dane mogą pochodzić z różnych systemów danych CAD lub wprowadzane ręcznie w trybie TEACH-IN\@.
+\end{itemize}
+
+Maszynę przed pracą z płytą PCB należy przezbroić. Operacja przezbrojenia polega na załadowaniu odpowiednich elementów elektronicznych oraz wykonaniu kalibracji.
+
+Możliwe formy dostarczenia elementów do automatu:
+\begin{itemize}
+	\item taśmy 8 mm, 12 mm, 16 mm, 24 mm, 32 mm, 44 mm,
+	\item tacki JEDEC,
+	\item laski SO8–PLCC84,
+	\item elementy luzem.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{./chapters/chapter2/M10V.jpeg}
+	\caption{Automat M10V~\cite{automatp&p2}}
+	\label{automat_pick_place}
+\end{figure}
+
 
 \subsection{Piec lutowniczy}
-(podobnie jak w pick\&place)
+Piec lutowniczy to maszyna która umożliwia w procesie na technikę lutowania rozpływowego elementów SMD\@. Ważnym zagadnieniem przy lutowaniu rozpyłowym jest profil termiczny. Na podstawie profilu szacujemy czas trwania operacji na piecu.
 
-\subsection{Stanowisk do ręcznego układania i lutowania elementów}
-Stanowisko to posiada na wyposażeniu:
+Profil termiczny składa się z etapów:
+\begin{description}
+	\item[Etap 1] Nagrzewanie wstępne (preheat) --- wstępne nagrzewanie to wzrost temperatury z nachyleniem 1--3 \degree{C} do osiągnięcia około 150 \degree{C}. W tej fazie następuje częściowe odparowanie topnika.
+	\item[Etap 2] Oczyszczanie (soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usuniecie tlenków z stopu lutowniczego. Trwanie tego etapu to od 60 do 120 sekund.
+	\item[Etap 3] Jednostajne rozgrzanie do rozpływu (ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidus (temperatura przemiany ciała stałego w ciekły) stopu lutowniczego.
+	\item[Etap 4] Rozpływ (reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250 \degree{C} (zależne od użytego stopu lutowniczego). W tym etapie stopiony stop tworzy połączenie pomiędzy polem lutowniczym a elementem elektronicznym. Czas trwania operacji to od 30 do 90 sekund.
+	\item[Etap 5] Chłodzenie (cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o nachyleniu 3--4 \degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne groźne dla elementów.
+\end{description}
+
+W procesie jest wykorzystywany piec eC-reflow-mate firmy Eurocircuits (Rysunek~\ref{piec}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./chapters/chapter2/piec.jpg}
+	\caption{Piec lutowniczy}
+	\label{piec}
+\end{figure}
+
+\subsection{Stanowisko do prac ręcznych}
+Stanowisko to odpowiada w procesie za operacje operatora które przeprowadza ręcznie (ręczne nakładanie i lutowanie elementów oraz kontrolę wizyjną).
+
+Stanowisko jest wyposażone w niezbędny sprzęt:
 \begin{itemize}
 	\item stację lutowniczą,
 	\item stację hot-air,
@@ -76,5 +125,3 @@ Stanowisko to posiada na wyposażeniu:
 	\item uchwyty montażowe,
 	\item mikroskop.
 \end{itemize}
-
-\subsection{Stanowisko z kontrolą wizualną}
