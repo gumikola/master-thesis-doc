@@ -1,0 +1,30 @@
+@startuml sa
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultTextAlignment center
+
+start
+:Pobierz parametry\n <latex>T_{start}, T_{stop}, \lambda</latex>;
+:<latex>T=T_{start}</latex>;
+while (<latex>T > T_{stop}</latex>) is (Tak)
+    :Wygeneruj nowe rozwiązanie\n<latex>x \rightarrow x'</latex>;
+    if (<latex>F(x^*) > F(x')</latex>) then (Tak)
+    :<latex>x^* = x'</latex>;
+    else (Nie)
+    endif
+    :<latex>\Delta = F(x')-F(x)</latex>;
+    if (<latex>\Delta \leq 0</latex>) then (Tak)
+    :<latex>x=x'</latex>;
+    else (Nie)
+    :<latex>p=\exp\left(\frac{-\Delta}{T} \right)</latex>;
+    if (<latex>rand(0,1) < p</latex>) then (Tak)
+    :<latex>x=x'</latex>;
+    else (Nie)
+    endif
+    :<latex>T=\lambda*T</latex>;
+    endif
+endwhile
+:Zwróć najlepsze rozwiązanie <latex>x^*</latex>;
+end
+
+@enduml

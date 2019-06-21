@@ -1,0 +1,18 @@
+@startuml gen_perm
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultTextAlignment center
+
+start
+:Pobierz tablicę "n" elementów (tab[n]);
+:Utwórz listę do przechowywania permutacji;
+while (<latex>\max(i) \ \textrm{kiedy}\  tab[i] < tab[i+1]</latex>) is (Prawda)
+    :<latex>\max(j) \ \textrm{kiedy}\   j>i \ \textrm{oraz}\ tab[j] > tab[i]</latex>;
+    :Zamień tab[i] z tab[j];
+    :Odwróć kolejność wszystkich elementów\nod indeksu "k" do "n" elementu;
+    :Dodaj do listy permutację;
+endwhile (Fałsz)
+:Zwróć listę wszystkich permutacji;
+end
+
+@enduml

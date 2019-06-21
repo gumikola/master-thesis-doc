@@ -1,0 +1,20 @@
+@startuml brute_force
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultTextAlignment center
+
+start
+:Pobierz zadania do wykonania;
+:Wygeneruj wszystkie permutacje|
+while (Czy istnieje permutacja?) is (Tak)
+  :Wczytaj permutacje zadań;
+  :Wylicz czas zakończenia\npermutacji zadań;
+  if (Czy jest to najkrótszy czas?) then (Tak)
+    :Zapisz czas;
+  else (Nie)
+  endif
+endwhile (Nie)
+:Zwróć najlepsze rozwiązanie permutacji zadań;
+end
+
+@enduml
