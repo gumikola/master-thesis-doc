@@ -1,21 +1,22 @@
-\chapter{Opis procesu}
+\chapter{Analiza procesu}
 
-\section{Opis ogólny}
-Proces badany w pracy to linia montująca płyty drukowane do finalnych produktów.
-Sam proces składa się z kilku etapów:
+\section{Ogólna charakterystyka}
+Proces badany w  niniejszej pracy to linia montująca płyty drukowane do finalnych produktów.
+Składa się on z następujących etapów:
 \begin{enumerate}
 	\item Pobranie potrzebnych elementów elektronicznych z magazynu.
 	\item Uzbrojenie automatu pick\&place w wymagane elementy.
 	\item Pobranie gotowych płyt PCB (ang. Printed Circuit Board).
-	\item Ręczne nałożenie pasty lutowniczej za pomocą sitodruku
+	\item Ręczne nałożenie pasty lutowniczej za pomocą sitodruku.
 	\item Uruchomienie procesu montażu elementów na maszynie pick\&place.
-	\item (Opcjonalnie) Umieszczenie ręczne elementów
+	\item Umieszczenie ręczne elementów (opcjonalnie).
 	\item Przeprowadzenie procesu lutowania w piecu.
-	\item (Opcjonalnie) Lutowanie ręczne.
+	\item Lutowanie ręczne (opcjonalnie).
 	\item Kontrola gotowej płyty PCB\@.
 \end{enumerate}
 
-Cechy procesu:
+\breakparagraph{}
+Specyfika procesu:
 \begin{itemize}
 	\item wszystkie procedury muszą być wykonane w ustalonej kolejności,
 	\item proces wymaga operatorów,
@@ -24,7 +25,7 @@ Cechy procesu:
 	\item piec lutowniczy może lutować kilka płyt drukowanych (ilość jest zależna od rozmiaru płyt).
 \end{itemize}
 
-Cały przepływ pracy został przedstawiony na diagramie~\ref{DiagFlow}.
+Cały przepływ pracy został przedstawiony przy pomocy diagramu na Rysunku~\ref{DiagFlow}.
 Czerwone krawędzie wyznaczają ścieżkę krytyczną procesu.
 Węzły o krawędziach przerywanych są to operacje opcjonalne zależne od projektu płyty PCB\@.
 
@@ -38,21 +39,24 @@ Węzły o krawędziach przerywanych są to operacje opcjonalne zależne od proje
 \section{Opis stanowisk}
 
 \subsection{Magazyn}
-Magazyn jest miejscem od którego zaczyna się cały proces.
+Magazyn jest miejscem od, którego zaczyna się cały proces.
 Przechowuje on wszystkie niezbędne elementy elektroniczne (rezystory, kondensatory, układy scalone itd.), gotowe płyty PCB oraz szablony sitodruku do poszczególnych projektów.
 Aktualny stan magazynowy oraz fizyczna lokalizacja produktów znajduję się w systemie ERP\@.
 Wszystkie potrzebne przedmioty są pobierane przez operatora.
 
 \subsection{Stanowisko z sitodrukiem}
 W kolejnym etapie produkcji gotowa płytka PCB trafia na urządzenie sitodruku.
+
+(Opisać czym jest maszyna sitodruku)
+
 Możemy wyszczególnić kilka typów takiej maszyny~\cite{sitodruk}:
 \begin{itemize}
-	\item sitodruk manualny --- najprostsza wersja urządzenia. Cały proces sprowadza się do ręcznego ustawienia szablonu na płytce oraz ręcznego nałożenia pasty przez operatora. Cechuję się gorszą jakością i powtarzalnością operacji w porównaniu do urządzeń poniżej.
-	\item sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu często przy pomocy systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to często się wykorzystuje przy prototypowaniu oraz produkcji małoseryjnej.
+	\item sitodruk manualny --- najprostsza wersja urządzenia. Cały proces sprowadza się do ręcznego ustawienia szablonu na płytce oraz ręcznego nałożenia pasty przez operatora. Cechuję się gorszą jakością i powtarzalnością operacji w porównaniu do urządzeń przedstawionych poniżej.
+	\item sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu zazwyczaj przy pomocy systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to często wykorzystuje się przy prototypowaniu oraz produkcji małoseryjnej.
 	\item sitodruk automatyczny --- rola operatora sprowadza się do podania płytki i odebrania po naniesieniu pasty (system offline) lub załadowania podajnika czystymi płytkami i później odebraniu gotowych (rozwiązanie in-line). Wszystkie czynności takie jak ustawienie szablonu i nałożenie pasty odbywają się automatycznie.
 \end{itemize}
 
-W naszym przypadku używany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Operator przed nałożeniem pasty na płytę PCB musi przezbroić maszynę. Proceder polega na przyniesieniu szablonu z magazynu oraz ustawieniu go na maszynie. W dalszym kroku następuje manualne naniesienie pasty.
+W analizowanym przypadku używany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Operator przed nałożeniem pasty na płytę PCB musi przezbroić maszynę. Proceder polega na przyniesieniu szablonu z magazynu oraz ustawieniu go na maszynie. W dalszym kroku następuje manualne naniesienie pasty.
 
 \begin{figure}[H]
 	\centering
@@ -62,8 +66,9 @@ W naszym przypadku używany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Ope
 \end{figure}
 
 \subsection{Automat pick\&place}
-Automat pick and place to maszyna która umożliwia za pomocą systemu wizyjnego w precyzyjny sposób układać komponenty SMD na płytkach PCB~\cite{automatp&p1}. W procesie badanym wykorzystywany jest automat M10V firmy Mechatronika (Rysunek~\ref{automat_pick_place}). Średnia wydajność maszyny plasuję się na ok. 1200 --- 1600 komponentów na godzinę.
+Automat pick and place to maszyna, która umożliwia w precyzyjny sposób układać komponenty SMD na płytkach PCB za pomocą systemu wizyjnego~\cite{automatp&p1}. W badanym procesie wykorzystywany jest automat M10V firmy Mechatronika (Rysunek~\ref{automat_pick_place}). Średnia wydajność maszyny to około 1200 --- 1600 komponentów na godzinę.
 
+\breakparagraph{}
 Cechy maszyny~\cite{automatp&p2}:
 \begin{itemize}
 	\item wbudowany system wizyjny,
@@ -72,17 +77,18 @@ Cechy maszyny~\cite{automatp&p2}:
 	\item korygowanie elementów na podstawie wykrycia złych oznaczeń na płycie,
 	\item automatyczna zmiana dysz,
 	\item automatyczne podawanie luźnych elementów (po wcześniejszej kalibracji),
-	\item dane mogą pochodzić z różnych systemów danych CAD lub wprowadzane ręcznie w trybie TEACH-IN\@.
+	\item dane mogą pochodzić z różnych systemów danych CAD lub być wprowadzane ręcznie w trybie TEACH-IN\@.
 \end{itemize}
 
 \newpage
 Maszynę przed pracą z płytą PCB należy przezbroić. Operacja przezbrojenia polega na załadowaniu odpowiednich elementów elektronicznych oraz wykonaniu kalibracji.
 
+\breakparagraph{}
 Możliwe formy dostarczenia elementów do automatu:
 \begin{itemize}
 	\item taśmy 8 mm, 12 mm, 16 mm, 24 mm, 32 mm, 44 mm,
 	\item tacki JEDEC,
-	\item laski SO8–PLCC84,
+	\item tuby SO8–PLCC84,
 	\item elementy luzem.
 \end{itemize}
 
@@ -95,26 +101,35 @@ Możliwe formy dostarczenia elementów do automatu:
 
 
 \subsection{Piec lutowniczy}
-Piec lutowniczy to maszyna która umożliwia w procesie na technikę lutowania rozpływowego elementów SMD\@. Ważnym zagadnieniem przy lutowaniu rozpyłowym jest profil termiczny. Na podstawie profilu szacujemy czas trwania operacji na piecu.
+Piec lutowniczy to maszyna, która umożliwia zastosowanie w procesie techniki lutowania rozpływowego elementów SMD\@. Ważnym zagadnieniem przy lutowaniu rozpyłowym jest profil termiczny. Na podstawie profilu szacujemy czas trwania operacji na piecu.
 
-Profil termiczny składa się z etapów:
+\breakparagraph{}
+Profil termiczny został schematycznie przedstawiony na Rysunku~\ref{schemat_termiczny} i składa się z następujących etapów:
 \begin{description}
-	\item[Etap 1] Nagrzewanie wstępne (preheat) --- wstępne nagrzewanie to wzrost temperatury z nachyleniem 1--3 \degree{C} do osiągnięcia około 150 \degree{C}. W tej fazie następuje częściowe odparowanie topnika.
-	\item[Etap 2] Oczyszczanie (soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usuniecie tlenków z stopu lutowniczego. Trwanie tego etapu to od 60 do 120 sekund.
-	\item[Etap 3] Jednostajne rozgrzanie do rozpływu (ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidus (temperatura przemiany ciała stałego w ciekły) stopu lutowniczego.
-	\item[Etap 4] Rozpływ (reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250 \degree{C} (zależne od użytego stopu lutowniczego). W tym etapie stopiony stop tworzy połączenie pomiędzy polem lutowniczym a elementem elektronicznym. Czas trwania operacji to od 30 do 90 sekund.
-	\item[Etap 5] Chłodzenie (cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o nachyleniu 3--4 \degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne groźne dla elementów.
+	\item[Etap 1] Nagrzewanie wstępne (preheat) --- wstępne nagrzewanie to jednostajny wzrost temperatury w tęmpie 1--3 \degree{C} do osiągnięcia około 150 \degree{C}. W tej fazie następuje częściowe odparowanie topnika.
+	\item[Etap 2] Oczyszczanie (soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usunięcie tlenków ze stopu lutowniczego. Etap ten trwa od 60 do 120 sekund.
+	\item[Etap 3] Jednostajne rozgrzanie do rozpływu (ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidusu (temperatura przemiany ciała stałego w stan ciekły) stopu lutowniczego.
+	\item[Etap 4] Rozpływ (reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250 \degree{C} (zależne od użytego stopu lutowniczego). Na tym etapie płynny stop tworzy połączenie pomiędzy polem lutowniczym a elementem elektronicznym. Czas trwania rozpływu to od 30 do 300 sekund.
+	\item[Etap 5] Chłodzenie (cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o jednostajnym spadku 3--4 \degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne groźne dla elementów.
 \end{description}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{./chapters/chapter2/schemat.png}
+	\caption{Przebieg profilu termicznego w lutowaniu rozpływowym}
+	\label{schemat_termiczny}
+\end{figure}
 
 W procesie jest wykorzystywany piec eC-reflow-mate firmy Eurocircuits (Rysunek~\ref{piec}).
 
-Specyfikacja pieca:
+
 \begin{table}[H]
 	\centering
+	\caption{Specyfikacja pieca}
 	\begin{tabular}{cc}
 		\toprule
 		Maksymalny rozmiar płyty PCB & 350 $\times$ 250 mm                  \\\midrule
-		Metody grzania                & promieniowanie IR, gorące powietrze \\\midrule
+		% Metody grzania                & promieniowanie IR, gorące powietrze \\\midrule
 		Zakres temperatur             & Do 288 \degree{C}                    \\\midrule
 		Komunikacja z komputerem      & USB                                  \\\midrule
 		Wymiary                       & 520 $\times$ 620 $\times$ 245 mm     \\\midrule
@@ -125,15 +140,16 @@ Specyfikacja pieca:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./chapters/chapter2/piec.jpg}
-	\caption{Piec lutowniczy}
+	\includegraphics[scale=0.5]{./chapters/chapter2/piec.jpg}
+	\caption{Piec lutowniczy eC-reflow-mate~\cite{piec}}
 	\label{piec}
 \end{figure}
 
 \subsection{Stanowisko do prac ręcznych}
-Stanowisko to odpowiada w procesie za operacje operatora które przeprowadza ręcznie (ręczne nakładanie i lutowanie elementów oraz kontrolę wizyjną).
+Operacje przeprowadzane przez operatora na tym stanowisku to ręczne nakładanie i lutowanie elementów oraz kontrola wizyjna.
 
-Stanowisko jest wyposażone w niezbędny sprzęt:
+\breakparagraph{}
+Jest ono wyposażone w następujący sprzęt:
 \begin{itemize}
 	\item stację lutowniczą,
 	\item stację hot-air,

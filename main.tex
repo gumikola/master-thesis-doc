@@ -1,4 +1,4 @@
-\documentclass[printmode]{mgr}
+\documentclass[printmode,openany]{mgr}
 %opcje klasy dokumentu mgr.cls zostały opisane w dołączonej instrukcji
 
 %poniżej deklaracje użycia pakietów, usunąć to co jest niepotrzebne
@@ -11,6 +11,7 @@
 \usepackage{subfigure}
 \usepackage{psfrag}
 \usepackage{float}
+\usepackage{pdfpages}
 
 %pakiety dodające dużo dodatkowych poleceń matematycznych
 \usepackage{amsmath}
@@ -26,9 +27,12 @@
 %pakiet wypisujący na marginesie etykiety równań i rysunków
 %zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
 %dokumentu wystarczy usunąć poniższą linię
-\usepackage{showlabels}
+% \usepackage{showlabels}
 \usepackage{url}
 \usepackage{gensymb}
+
+% własne makro
+\newenvironment{breakparagraph}{\hfill\break}
 
 %dane do złożenia strony tytułowej
 \title{Optymalizacja procesu produkcji urządzeń elektronicznych}
@@ -62,7 +66,7 @@
 
 \raggedright{
 	\bibliography{bibliography} % wstawia bibliografię korzystając z pliku
-	\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+	\bibliographystyle{ieeetr} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
 }
 
 %opcjonalnie może się tu pojawić spis rysunków i tabel
