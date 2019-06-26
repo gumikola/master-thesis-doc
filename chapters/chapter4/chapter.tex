@@ -39,26 +39,27 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 
 \begin{table}[H]
 	\centering
-	\caption{Opis pól w tabeli ''projects''}
+	\caption{Opis pól w tabeli ``projects''}
 	\begin{tabular}{lll}
 		\toprule
-		Pole tabeli        & Opis                                    & Format pola       \\
+		Pole tabeli         & Opis                                    & Format pola       \\
 		\midrule
-		id                 & Indeks projektu                         & Liczba całkowita \\
-		company            & Nazwa firmy                             & Tekst             \\
-		name               & Nazwa projektu                          & Tekst             \\
-		nbr\_parts         & Ilość elementów                      & Liczba całkowita \\
-		two\_side          & Czy płyta posiada 2 warstwy             & Liczba całkowita \\
-		operation\_side\_a & Indeks do czasów operacji dla strony A & Liczba całkowita \\
-		operation\_side\_b & Indeks do czasów operacji dla strony B & Liczba całkowita \\
-		changeover         & Indeks do czasów przezbrojenia         & Liczba całkowita \\
+		id                  & Indeks projektu                         & Liczba całkowita \\
+		company             & Nazwa firmy                             & Tekst             \\
+		name                & Nazwa projektu                          & Tekst             \\
+		nbr\_parts          & Ilość elementów                      & Liczba całkowita \\
+		two\_side           & Czy płyta posiada 2 warstwy            & Liczba całkowita \\
+		operation\_side\_a  & Indeks do czasów operacji dla strony A & Liczba całkowita \\
+		operation\_side\_b  & Indeks do czasów operacji dla strony B & Liczba całkowita \\
+		changeover\_side\_a & Indeks do czasów przezbrojenia         & Liczba całkowita \\
+		changeover\_side\_b & Indeks do czasów przezbrojenia         & Liczba całkowita \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Opis pól w tabeli ''changeover\_time''}
+	\caption{Opis pól w tabeli ``changeover\_time''}
 	\begin{tabular}{lll}
 		\toprule
 		Pole tabeli      & Opis                              & Format pola       \\
@@ -72,7 +73,7 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 
 \begin{table}[H]
 	\centering
-	\caption{Opis pól w tabeli ''operation\_time''}
+	\caption{Opis pól w tabeli ``operation\_time''}
 	\begin{tabular}{lll}
 		\toprule
 		Pole tabeli      & Opis                                          & Format pola       \\
@@ -122,7 +123,7 @@ Wybór strategii schładzania zależy w dużej mierze od problemu jaki, został 
 
 \breakparagraph{}
 W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
-\raggedbottom
+\raggedbottom{}
 
 
 \section{Diagramy}
@@ -143,8 +144,8 @@ W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
 
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.67]{chapters/chapter4/sa.pdf}
-    \caption{Diagram algorytmu ``Symulowane wyżarzanie''}
-    \label{sa}
+	\centering
+	\includegraphics[scale=0.67]{chapters/chapter4/sa.pdf}
+	\caption{Diagram algorytmu ``Symulowane wyżarzanie''}
+	\label{sa}
 \end{figure}

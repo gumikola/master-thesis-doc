@@ -9,6 +9,7 @@ Celem badań była ocena skuteczności wybranych algorytmów w rozwiązywaniu pr
 	\item HackRF One.
 \end{enumerate}
 
+\newpage
 \section{Liteboard}
 
 Liteboard jest to komputer jednopłytkowy (Single Board Computer) oparty na module liteSOM~\cite{liteboard}. Projekt ten posiada elementy elektroniczne i mechaniczne po obu stronach laminatu.
@@ -217,7 +218,7 @@ Ilość elementów elektronicznych: 139.
 	\label{kbox}
 \end{figure}
 
-
+\newpage
 \section{HackRF One}
 HackRF One jest to urządzenie firmy Great Scott Gadgets, służące do odbioru i transmisji sygnałów radiowych. Ta platforma sprzętowa posiada licencję typu open-source (otwarte oprogramowanie) i może być stosowana jako peryferyjne urządzenie USB lub zaprogramowana do pracy samodzielnej.
 
@@ -248,8 +249,9 @@ Ilość elementów elektronicznych: 300.
 	\label{hackrf}
 \end{figure}
 
+\newpage
 \section{Wyniki badań}
-Badania zostały przeprowadzone na komputerze PC z procesorem Intel Xeon E5-2673 v4 o taktowaniu 2.30GHz. Zbiór zadań posiadał 11 elementów i składał się on z projektów:
+Badania zostały przeprowadzone na komputerze PC z procesorem Intel Xeon E5--2673 v4 o taktowaniu 2.30GHz. Zbiór zadań posiadał 11 elementów i składał się on z projektów:
 \begin{itemize}
 	\item 2 x Liteboard
 	\item 1 x Chiliboard
@@ -277,8 +279,7 @@ Na początku zbadano wpływ temperatury początkowej na działanie algorytmu sym
 	\end{tabular}
 \end{table}
 
-\newpage
-Kolejnym scenariuszem badanym jest zachowanie SA na różne wartości temperatury końcowej (Tabela~\ref{tstop_sa}). zwiększanie tego parametru powoduję że program  szybciej kończy swoje działanie. Niestety ma to wpływ na skuteczności. Powodem tego jest że pod koniec procesu wyżarzania cząsteczki mają dużą ruchliwość (duże prawdopodobieństwo znalezienia gorszego rozwiązania).
+Kolejnym scenariuszem badanym jest zachowanie SA na różne wartości temperatury końcowej (Tabela~\ref{tstop_sa}). Zwiększanie tego parametru powoduję że program  szybciej kończy swoje działanie. Niestety ma to wpływ na skuteczności. Powodem tego jest że pod koniec procesu wyżarzania cząsteczki mają dużą ruchliwość (duże prawdopodobieństwo znalezienia gorszego rozwiązania).
 \begin{table}[H]
 	\centering
 	\label{tstop_sa}
@@ -294,10 +295,15 @@ Kolejnym scenariuszem badanym jest zachowanie SA na różne wartości temperatur
 	\end{tabular}
 \end{table}
 
+\newpage
+W ostatnim badaniu sprawdzono reakcję algorytmu na różne wartości $\lambda$ (Tabela~\ref{lamda_sa}). Parametr ten wpływa za szybkość spadku temperatury w SA\@. Im wartość niższa tym algorytm potrzębuję mniejszej ilości iteracji do zakończenia działania.
+Według badań zbyt niska $\lambda$ powoduje że w symulowanym wyżarzaniu funkcja celu zbyt szybko zbiega do minimum lokalnego.
+Odpowiednie dobranie wartości gwarantuje znalezienie lepszego rozwiązania ($\lambda = 0.5$) bez zbędnego wydłużania czasu działania algorytmu.
 
 \begin{table}[H]
 	\centering
 	\caption{Wpływ $\lambda$ gdy $T_{start}=8000$ i $T_{stop}=10$}
+	\label{lamda_sa}
 	\begin{tabular}{lll}
 		\toprule
 		              & Czas wykonywania$[ms]$ & Moment zakończenia procesu$[s]$ \\
@@ -305,6 +311,26 @@ Kolejnym scenariuszem badanym jest zachowanie SA na różne wartości temperatur
 		$\lambda=0.2$ & 2,89                   & 4733                             \\
 		$\lambda=0.5$ & 5,87                   & 4503                             \\
 		$\lambda=0.8$ & 17,69                  & 4503                             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+W celu porównania skuteczności SA wykonano badania z użyciem algorytmu dokładnego. Przegląd zupełny znalazł optymalne rozwiązanie niestety kosztem długie czasu działania. POwodem tego jest złożoność obliczeniowa algorytmu która wynosi $11! = 39916800$ dla zbioru zadań jedenasto elementowego. Algorytm metaheurystyczny jest blisko 1069840 razy szybszy generując nieznacznie gorsze rozwiązanie.
+
+\breakparagraph{}
+Parametry symulowanego wyżarzania:
+\\$T_{start}=8000$\\$T_{stop}=10$\\$\lambda=0.5$
+
+\begin{table}[H]
+	\centering
+	\caption{Porównanie SA z przeglądem zupełnym}
+	\label{comapte_sa_bf}
+	\begin{tabular}{lll}
+		\toprule
+		                       & Czas wykonywania$[ms]$ & Moment zakończenia procesu$[s]$ \\
+		\midrule
+		Przegląd zupełny     & 6229699,69             & 4483                             \\
+		Symulowane wyżarzanie & 5,82                   & 4503                             \\
 		\bottomrule
 	\end{tabular}
 \end{table}
