@@ -1,7 +1,7 @@
 \chapter{Analiza procesu}
 
 \section{Ogólna charakterystyka}
-Proces badany w  niniejszej pracy to linia montująca płyty drukowane do finalnych produktów.
+Problem opisany w  niniejszej pracy dotyczy linii montująca płyty drukowane do finalnych produktów.
 Składa się on z następujących etapów:
 \begin{enumerate}
 	\item Pobranie potrzebnych elementów elektronicznych z magazynu.
@@ -27,7 +27,7 @@ Specyfika procesu:
 
 Cały przepływ pracy został przedstawiony przy pomocy diagramu na Rysunku~\ref{DiagFlow}.
 Czerwone krawędzie wyznaczają ścieżkę krytyczną procesu.
-Węzły o krawędziach przerywanych są to operacje opcjonalne zależne od projektu płyty PCB\@.
+Węzły o krawędziach przerywanych są to operacje opcjonalne, zależne od projektu płyty PCB\@.
 
 \begin{figure}[H]
 	\centering
@@ -39,21 +39,20 @@ Węzły o krawędziach przerywanych są to operacje opcjonalne zależne od proje
 \section{Opis stanowisk}
 
 \subsection{Magazyn}
-Magazyn jest miejscem od, którego zaczyna się cały proces.
+Magazyn jest miejscem, od którego zaczyna się cały proces.
 Przechowuje on wszystkie niezbędne elementy elektroniczne (rezystory, kondensatory, układy scalone itd.), gotowe płyty PCB oraz szablony sitodruku do poszczególnych projektów.
-Aktualny stan magazynowy oraz fizyczna lokalizacja produktów znajduję się w systemie ERP\@.
+Aktualny stan magazynowy oraz fizyczna lokalizacja produktów znajduje się w systemie ERP\@.
 Wszystkie potrzebne przedmioty są pobierane przez operatora.
 
 \subsection{Stanowisko z sitodrukiem}
 W kolejnym etapie produkcji gotowa płytka PCB trafia na urządzenie sitodruku.
 
-(Opisać czym jest maszyna sitodruku)
-
+\breakparagraph{}
 Możemy wyszczególnić kilka typów takiej maszyny~\cite{sitodruk}:
 \begin{itemize}
-	\item sitodruk manualny --- najprostsza wersja urządzenia. Cały proces sprowadza się do ręcznego ustawienia szablonu na płytce oraz ręcznego nałożenia pasty przez operatora. Cechuję się gorszą jakością i powtarzalnością operacji w porównaniu do urządzeń przedstawionych poniżej.
-	\item sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu zazwyczaj przy pomocy systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to często wykorzystuje się przy prototypowaniu oraz produkcji małoseryjnej.
-	\item sitodruk automatyczny --- rola operatora sprowadza się do podania płytki i odebrania po naniesieniu pasty (system offline) lub załadowania podajnika czystymi płytkami i później odebraniu gotowych (rozwiązanie in-line). Wszystkie czynności takie jak ustawienie szablonu i nałożenie pasty odbywają się automatycznie.
+	\item sitodruk manualny --- najprostsza wersja urządzenia. Cały proces sprowadza się do ręcznego ustawienia szablonu na płytce oraz ręcznego nałożenia pasty przez operatora. Cechuje się gorszą jakością i powtarzalnością operacji w porównaniu do urządzeń przedstawionych poniżej.
+	\item sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu zazwyczaj przy pomocy systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to jest często wykorzystywane przy prototypowaniu oraz produkcji małoseryjnej.
+	\item sitodruk automatyczny --- rola operatora sprowadza się do podania płytki i odebrania po naniesieniu pasty (system offline) lub załadowania podajnika czystymi płytkami i później odebraniu gotowych (rozwiązanie in-line). Wszystkie czynności, takie jak ustawienie szablonu i nałożenie pasty, odbywają się automatycznie.
 \end{itemize}
 
 W analizowanym przypadku używany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Operator przed nałożeniem pasty na płytę PCB musi przezbroić maszynę. Proceder polega na przyniesieniu szablonu z magazynu oraz ustawieniu go na maszynie. W dalszym kroku następuje manualne naniesienie pasty.
@@ -106,11 +105,11 @@ Piec lutowniczy to maszyna, która umożliwia zastosowanie w procesie techniki l
 \breakparagraph{}
 Profil termiczny został schematycznie przedstawiony na Rysunku~\ref{schemat_termiczny} i składa się z następujących etapów:
 \begin{description}
-	\item[Etap 1] Nagrzewanie wstępne (preheat) --- wstępne nagrzewanie to jednostajny wzrost temperatury w tęmpie 1--3 \degree{C} do osiągnięcia około 150 \degree{C}. W tej fazie następuje częściowe odparowanie topnika.
+	\item[Etap 1] Nagrzewanie wstępne (preheat) --- wstępne nagrzewanie to jednostajny wzrost temperatury w tempie 1--3\degree{C}, do osiągnięcia około 150\degree{C}. W tej fazie następuje częściowe odparowanie topnika.
 	\item[Etap 2] Oczyszczanie (soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usunięcie tlenków ze stopu lutowniczego. Etap ten trwa od 60 do 120 sekund.
 	\item[Etap 3] Jednostajne rozgrzanie do rozpływu (ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidusu (temperatura przemiany ciała stałego w stan ciekły) stopu lutowniczego.
-	\item[Etap 4] Rozpływ (reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250 \degree{C} (zależne od użytego stopu lutowniczego). Na tym etapie płynny stop tworzy połączenie pomiędzy polem lutowniczym a elementem elektronicznym. Czas trwania rozpływu to od 30 do 300 sekund.
-	\item[Etap 5] Chłodzenie (cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o jednostajnym spadku 3--4 \degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne groźne dla elementów.
+	\item[Etap 4] Rozpływ (reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250\degree{C} (zależne od użytego stopu lutowniczego). Na tym etapie płynny stop tworzy połączenie pomiędzy polem lutowniczym a elementem elektronicznym. Czas trwania rozpływu to od 30 do 300 sekund.
+	\item[Etap 5] Chłodzenie (cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o jednostajnym spadku 3--4\degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne groźne dla elementów.
 \end{description}
 
 \begin{figure}[H]

@@ -15,7 +15,7 @@ Ze względu na dużą złożoność procesu założone zostały pewne uproszczen
 	\item nie tworzymy buforów --- nie buforujemy elementów pomiędzy operacjami w procesie (FIFO).
 \end{itemize}
 
-W procesie jest wykorzystywane 6 stanowisk (maszyn) które składają się na cały proces:
+W procesie jest wykorzystywane 6 stanowisk (maszyn), które składają się na cały proces:
 \begin{description}
 	\item[Maszyna 1] Stanowisko z sitodrukiem manualnym.
 	\item[Maszyna 2] Automat pick and place.
@@ -112,7 +112,7 @@ Z racji tego, że proces jest rzeczywisty to posiada pewne ograniczenia:
 	\item każda operacja może być wykonywana tylko przez jedną maszynę,
 	\item żadna maszyna nie może wykonywać więcej niż jednej operacji (uwagi: przypadek kiedy w piecu lutowniczym lutujemy jedną płytę PCB),
 	\item wykonywanie żadnej operacji nie może zostać przerwane przed jej zakończeniem,
-	\item momenty rozpoczęcia operacji oraz czas przezbrojenia nie mogą być ujemne
+	\item momenty rozpoczęcia operacji oraz czas przezbrojenia nie mogą być ujemne:
 	      \begin{equation}
 	      	S_{k, \pi(i)}, s^{k}_{\pi(i), \pi(j)} > 0
 	      \end{equation}

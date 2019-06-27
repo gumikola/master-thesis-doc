@@ -1,7 +1,7 @@
 \chapter{Oprogramowanie}
 
 W celu wykonania badań, które ocenią możliwości optymalizacji procesu produkcji elektroniki, konieczne było zaimplementowanie odpowiednich algorytmów.
-Z względu na to, że Flow Shop jest algorytmem NP-trudny często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest złożoność obliczeniowa która wynosi $O(n!)$.
+Ze względu na to, że Flow Shop jest algorytmem NP-trudnym, często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest złożoność obliczeniowa, która wynosi $O(n!)$.
 
 W przedstawionym przypadku użyty został algorytm dokładny (przegląd zupełny), ponieważ liczba zadań jest niewielka oraz planowanie w systemie jest offline (nie ma ograniczeń czasowych na uzyskanie rozwiązania).
 W celu porównania wybrano algorytm metaheurystyczny (symulowane wyżarzanie), który nie daje rozwiązania optymalnego, lecz dostatecznie dobre w krótkim czasie.
@@ -95,10 +95,10 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 
 Przegląd zupełny (ang. Brute-force search) jest to algorytm polegający na wyznaczeniu wszystkich możliwych permutacji zadania, a następnie wybraniu z tego zbioru rozwiązania najlepszego. Jest to algorytm dokładny, przez co rozwiązanie jest zawsze optymalne, lecz niestety okupione dużą złożonością.
 
-Diagram na Rysuneku~\ref{brute_force} przedstawia ideę algorytmu. W celu wygenerowania wszystkich permutacji zadań wykorzystano algorytm porządku leksykograficznego (Rysunek~\ref{gen_perm}).
+Diagram na Rysunku~\ref{brute_force} przedstawia ideę algorytmu. W celu wygenerowania wszystkich permutacji zadań, wykorzystano algorytm porządku leksykograficznego (Rysunek~\ref{gen_perm}).
 
 \section{Symulowane wyżarzanie}
-Symulowane wyżarzanie (ang. Simulated annealing, SA) to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten oparty jest na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
+Symulowane wyżarzanie (ang. Simulated annealing, SA) to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten jest oparty na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem, ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
 
 Głównym parametrem w badanym algorytmie jest temperatura. To ona odpowiada za to, jak intensywny będzie ruch cząsteczek. Duża ruchliwość cząsteczek umożliwia szersze przeszukanie przestrzeni rozwiązań. Dzięki temu minimalizujemy szanse na utknięcie algorytmu w minimum lokalnym podczas optymalizacji. Wraz z postępowaniem symulowanego wyżarzania, temperatura jest zmniejszana.
 
@@ -119,7 +119,7 @@ Stosuję się najczęściej dwa schematy schładzania~\cite{Smutnicki2002As}:
 	\item logarytmiczny $T = T /(1 + \lambda T)$
 \end{itemize}
 
-Wybór strategii schładzania zależy w dużej mierze od problemu jaki, został postawiony przed algorytmem.
+Wybór strategii schładzania zależy w dużej mierze od problemu, jaki został postawiony przed algorytmem.
 
 \breakparagraph{}
 W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
