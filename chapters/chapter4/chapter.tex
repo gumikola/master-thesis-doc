@@ -1,13 +1,22 @@
 \chapter{Oprogramowanie}
 
-W celu wykonania badań, które ocenią możliwości optymalizacji procesu produkcji elektroniki, konieczne było zaimplementowanie odpowiednich algorytmów.
-Ze względu na to, że Flow Shop jest algorytmem NP-trudnym, często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest złożoność obliczeniowa, która wynosi $O(n!)$.
+Do rozwiązania opisanego w poprzednim rozdziale problemu skonstruowano i zaimplementowano dwa algorytmy: dokładny oraz przybliżony.
+Ze względu na to, że problem przepływowy jest NP-trudny, często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest wykłądnicza złożoność obliczeniowa. Rozpatrywany w prac problem jest pewnym uogólnieniem problemu przepływowego, jest więc także NP-trudny.
 
 W przedstawionym przypadku użyty został algorytm dokładny (przegląd zupełny), ponieważ liczba zadań jest niewielka oraz planowanie w systemie jest offline (nie ma ograniczeń czasowych na uzyskanie rozwiązania).
-W celu porównania wybrano algorytm metaheurystyczny (symulowane wyżarzanie), który nie daje rozwiązania optymalnego, lecz dostatecznie dobre w krótkim czasie.
+W celu porównania wybrano algorytm metaheurystyczny (symulowane wyżarzanie), który nie daje rozwiązania optymalnego, lecz dostatecznie dobre w krótkim czasie. Będzie on stosowany w przypadku produkcji większej liczby płytek.
 
 \section{Implementacja}
-Program stworzony w celu badań został napisany w języku C++ przy wykorzystaniu środowiska Qt. Jest to zestaw darmowych narzędzi i bibliotek, służących do tworzenia aplikacji okienkowych oraz konsolowych. Niewątpliwą zaletą Qt jest jego wieloplatformowość, dzięki czemu przy użyciu jednego kodu bazowego, może on być zaimplementowany w różnych środowiskach (Windows, Linux, macOS, Android oraz systemy wbudowane).
+Algorytm zaimplementowano w języku C++ przy wykorzystaniu środowiska Qt. Jest to zestaw darmowych narzędzi i bibliotek, służących do tworzenia aplikacji okienkowych oraz konsolowych. Niewątpliwą zaletą Qt jest jego wieloplatformowość, dzięki czemu przy użyciu jednego kodu bazowego, może on być zaimplementowany w różnych środowiskach (Windows, Linux, macOS, Android oraz systemy wbudowane).
+
+Przykład działania programu na Rysunku~\ref{app_out}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{chapters/chapter4/app_out.png}
+	\caption{Wyjście programu.}
+	\label{app_out}
+\end{figure}
 
 \breakparagraph{}
 W celu łatwego i usystematyzowanego dostępu do informacji o poszczególnych projektach i czasach wykonywania, zaprojektowano i stworzono bazę danych. Zastosowany został system zarządzania bazą danych SQLite.
@@ -21,7 +30,6 @@ Zalety SQLite:
 	\item duża wydajność (silnik napisany w języku C).
 \end{itemize}
 
-\newpage{}
 \paragraph{}
 Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 \begin{itemize}
@@ -36,6 +44,9 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 	\caption{Struktura bazy danych}
 	\label{baza_danych}
 \end{figure}
+
+
+Opis poszczególnych pól struktur baz danych został przedstawiony w Tabelach~\ref{projects}--\ref{oper}.
 
 \begin{table}[H]
 	\centering
@@ -55,6 +66,7 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 		changeover\_side\_b & Indeks do czasów przezbrojenia         & Liczba całkowita \\
 		\bottomrule
 	\end{tabular}
+	\label{projects}
 \end{table}
 
 \begin{table}[H]
@@ -69,6 +81,7 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 		pick\_and\_place & Czas przezbrojenia na pick\&place & Liczba całkowita \\
 		\bottomrule
 	\end{tabular}
+	\label{changeover}
 \end{table}
 
 \begin{table}[H]
@@ -85,30 +98,62 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 		reflow           & Czas operacji lutowania w piecu               & Liczba całkowita \\
 		manual\_solder   & Czas operacji ręcznego lutowania             & Liczba całkowita \\
 		assembly\_check  & Czas operacji kontroli wizualnej              & Liczba całkowita \\
-
 		\bottomrule
 	\end{tabular}
+	\label{oper}
 \end{table}
 
-\newpage{}
+Dane wprowadzone zostały do bazy danych przy pomocy aplikacji DataGrip. Na rysunkach~\ref{dg:proj}--\ref{dg:changeover} przedstawiono tą operację dla każdej tabeli.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{chapters/chapter4/projects_db.png}
+	\caption{Tabela ``projects'' w DataGrip}
+	\label{dg:proj}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{chapters/chapter4/opera_db.png}
+	\caption{Tabela ``operation\_time'' w DataGrip}
+	\label{dg:oper}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{chapters/chapter4/changeover_db.png}
+	\caption{Tabela ``changeover\_time'' w DataGrip}
+	\label{dg:changeover}
+\end{figure}
+
 \section{Przegląd zupełny}
 
-Przegląd zupełny (ang. Brute-force search) jest to algorytm polegający na wyznaczeniu wszystkich możliwych permutacji zadania, a następnie wybraniu z tego zbioru rozwiązania najlepszego. Jest to algorytm dokładny, przez co rozwiązanie jest zawsze optymalne, lecz niestety okupione dużą złożonością.
+Przegląd zupełny (ang. Brute-force search) jest to algorytm polegający na wyznaczeniu wszystkich możliwych permutacji zadań (rozwiązań dopuszczalnych), a następnie wybraniu z tego zbioru najlepszego rozwiązania. Jest to algorytm dokładny, przez co rozwiązanie jest zawsze optymalne, lecz niestety okupione dużą czasochłonnością obliczeń.
 
 Diagram na Rysunku~\ref{brute_force} przedstawia ideę algorytmu. W celu wygenerowania wszystkich permutacji zadań, wykorzystano algorytm porządku leksykograficznego (Rysunek~\ref{gen_perm}).
 
-\section{Symulowane wyżarzanie}
-Symulowane wyżarzanie (ang. Simulated annealing, SA) to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten jest oparty na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem, ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
+\section{Metoda symulowanego wyżarzania}
+Symulowane wyżarzanie (ang. Simulated annealing,w skrócie SA) to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten jest oparty na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem, ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
 
-Głównym parametrem w badanym algorytmie jest temperatura. To ona odpowiada za to, jak intensywny będzie ruch cząsteczek. Duża ruchliwość cząsteczek umożliwia szersze przeszukanie przestrzeni rozwiązań. Dzięki temu minimalizujemy szanse na utknięcie algorytmu w minimum lokalnym podczas optymalizacji. Wraz z postępowaniem symulowanego wyżarzania, temperatura jest zmniejszana.
+Cechą która odróżnia metodę symulowanego wyżarzania od innych metod metaheurystyczny to używanie funkcji akceptacji. Funkcja akceptacji pozwala na opuszczanie ekstremum lokalnego przez przyjęcie chwilowo gorszego rozwiązania. Wzór na funkcję akceptacji:
+\begin{equation}
+	p=exp(\frac{F(x')-F(x)}{T}),
+\end{equation}
 
-W algorytmie SA istotną rolę odgrywają: dobór odpowiednich parametrów, strategii schładzania oraz dobranie techniki ruchu po przestrzeni.
+gdzie:
+\begin{itemize}
+	\item $T$ --- bieżąca temperatura,
+	\item $x'$ --- nowe wygenerowane rozwiązanie,
+	\item $x$ --- rozwiązanie bazowe
+\end{itemize}
+
+W algorytmie SA istotną rolę odgrywają: dobór odpowiednich parametrów, strategii schładzania oraz dobranie techniki ruchu po przestrzeni (generowanie otoczeń).
 
 \breakparagraph{}
 Symulowane wyżarzanie posiada 3 parametry wpływające na jego działanie:
 \begin{itemize}
 	\item $T_{start}$ --- temperatura początkowa (wartość początkowa temperatury),
-	\item $T_{stop}$ --- temperatura końcowa (warunek stopu),
+	\item $T_{stop}$ --- temperatura końcowa (ewentualny warunek stopu),
 	\item $\lambda$ --- współczynnik schładzania (tempo, w jakim temperatura ma spadać).
 \end{itemize}
 
@@ -119,7 +164,17 @@ Stosuję się najczęściej dwa schematy schładzania~\cite{Smutnicki2002As}:
 	\item logarytmiczny $T = T /(1 + \lambda T)$
 \end{itemize}
 
-Wybór strategii schładzania zależy w dużej mierze od problemu, jaki został postawiony przed algorytmem.
+\breakparagraph{}
+Wybór strategii schładzania zależy w dużej mierze od problemu, jaki będzie rozwiązywany przez algorytmem.
+
+\breakparagraph{}
+W metodzie symulowanego wyżarzania tak jak w wielu innych metaheurystykach ważny jest wybór techniki generowania otoczeń. Najpopularniejsze z nich to:
+\begin{itemize}
+	\item zamień --- wybranie dwóch losowych elementów i ich zamiana miejscami,
+	\item zamień sąsiednie --- wybranie losowego zadania, a następnie zamiana kolejności z następnym zadaniem na liście,
+	\item wstaw --- wybranie losowego elementu, który przesuwamy na losową pozycję na liście.
+\end{itemize}
+
 
 \breakparagraph{}
 W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
@@ -129,7 +184,7 @@ W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
 \section{Diagramy}
 \begin{figure}[H]
 	\centering
-	\includegraphics[]{chapters/chapter4/brute_force.pdf}
+	\includegraphics[scale=0.65]{chapters/chapter4/brute_force.pdf}
 	\caption{Diagram algorytmu ``Przegląd zupełny''}
 	\label{brute_force}
 \end{figure}

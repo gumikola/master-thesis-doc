@@ -6,15 +6,15 @@ skinparam defaultTextAlignment center
 start
 :Pobierz zadania do wykonania;
 :Wygeneruj wszystkie permutacje|
-while (Czy istnieje permutacja?) is (Tak)
+while (Czy ten czas jest krótszy?) is (Tak)
   :Wczytaj permutacje zadań;
-  :Wylicz czas zakończenia\npermutacji zadań;
+  :Oblicz moment ostatniego zadania;
   if (Czy jest to najkrótszy czas?) then (Tak)
-    :Zapisz czas;
+    :Zapisz ten czas;
   else (Nie)
   endif
 endwhile (Nie)
-:Zwróć najlepsze rozwiązanie permutacji zadań;
+:Zwróć najlepsze rozwiązanie - permutację zadań;
 end
 
 @enduml

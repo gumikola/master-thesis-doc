@@ -1,119 +1,128 @@
 \chapter{Sformułowanie problemu}
+W tym rozdziale opiszemy przebieg rozpatrywanego procesu oraz przedstawimy jego model matematyczny.
+
+% \section{Pare słów o Flow Shop}
+% % ogarnij kolejność flow shop gdzie ma być
+% \breakparagraph{}
+% \textbf{Flow shop ($F_{m}$)} --- model $m$ pracujących maszyn i $n$ zadań. Każde zadaniem musi zostać obsłużone przez każdą maszynę. Kolejność operacji zadania jest ustalona z góry i nie ma możliwości jej zmiany. Dodatkowo zadanie nie może być przetwarzane przez kolejną maszynę, jeżeli nie zakończyło pracy na poprzedniej.
+
 
 \section{Opis problemu}
-Problem poruszany w pracy to problem przepływowy (ang. Flow Shop) z przezbrojeniem maszyn~\cite{188148}.
+Rozpatrywany problem jest to pewne uogólnienie klasycznego w teorii szeregowania permutacyjnego problemu przepływowego (ang. Flow-Shop). Dokładny opis tego problemu oraz algorytm metaheurystyczny jego rozwiązania są przedstawione między innymi w pracach ``Grabowski.J, Wodecki.M''~\cite{GRABOWSKI20041891} oraz ``Nowicki.E, Smutnicki.C''~\cite{NOWICKI1996160}
 
-\breakparagraph{}
-\textbf{Flow shop ($F_{m}$)} --- model $m$ pracujących maszyn i $n$ zadań. Każde zadaniem musi zostać obsłużone przez każdą maszynę. Kolejność operacji zadania jest ustalona z góry i nie ma możliwości jej zmiany. Dodatkowo zadanie nie może być przetwarzane przez kolejną maszynę, jeżeli nie zakończyło pracy na poprzedniej.
+Dodatkowo w procesie występują przezbrojenia maszyn.
 
 \breakparagraph{}
 Ze względu na dużą złożoność procesu założone zostały pewne uproszczenia:
 \begin{itemize}
 	\item łańcuch transportu pomiędzy maszynami a magazynem został pominięty --- zakładamy, że potrzebne elementy znajdują przy każdym stanowisku,
-	\item pomijamy ilość operatorów --- w pracy nie badamy wpływu ilości operatorów na czas procesowania, każda maszyna posiada własnego operatora,
-	\item piec lutuje tylko jedną płytę PCB --- w warunkach rzeczywistych ilość płyt PCB lutowanych jest ograniczona powierzchnią roboczą pieca. Ze względu na to, że w pracy zajmujemy się problemem przepływowym, a nie plecakowym założono, że piec lutuje tylko jeden laminat,
-	\item nie tworzymy buforów --- nie buforujemy elementów pomiędzy operacjami w procesie (FIFO).
+	\item pomijamy ilość operatorów --- w pracy nie badamy wpływu ilości operatorów na czas trwania procesu, każda maszyna posiada własnego operatora,
+	\item piec lutuje jednocześnie tylko jedną płytę PCB --- w warunkach rzeczywistych liczba lutowanych płyt PCB jest ograniczona powierzchnią roboczą pieca. Pominięcie tego założenia wymaga stosowania magazynów pomiędzy maszynami.0
 \end{itemize}
 
-W procesie jest wykorzystywane 6 stanowisk (maszyn), które składają się na cały proces:
+\breakparagraph{}
+Proces wytwarzania płyt jest realizowany na 6 stanowiskach (maszynach):
 \begin{description}
 	\item[Maszyna 1] Stanowisko z sitodrukiem manualnym.
 	\item[Maszyna 2] Automat pick and place.
-	\item[Maszyna 3] Stanowisko do ręcznego układania elementów.
+	\item[Maszyna 3] Ręczne układanie elementów.
 	\item[Maszyna 4] Piec lutowniczy.
 	\item[Maszyna 5] Stacja do lutowania ręcznego.
-	\item[Maszyna 6] Stanowisko do kontroli wizyjnej.
+	\item[Maszyna 6] Kontrola wizyjna gotowych elementów.
 \end{description}
 
-Przezbrojenie w procesie wykonywane jest na dwóch maszynach: stanowisko z sitodrukiem oraz pick\&place.
+\newpage{}
+W procesie na 2 maszynach jest wykonywane przezbrojenie pomiędzy kolejnymi operacjami:
+\begin{enumerate}
+	\item Stanowisko sitodruku.
+	\item Automat pick\&place
+\end{enumerate}
 
-\section{Model matematyczny}
+\section{Model matematyczny procesu}
 
 \breakparagraph{}
 Zbiór maszyn
 \begin{equation}
-	M=\lbrace 1, 2, \dots, m \rbrace
+	M=\lbrace 1, 2, \dots, m \rbrace,
 \end{equation}
 
-gdzie $m$ to liczba maszyn.
+gdzie $m$ to liczba maszyn. Maszyna reprezentuje stanowisko.
 
 \breakparagraph{}
 Zbiór zadań:
 \begin{equation}
-	J=\lbrace 1, 2, \dots, n \rbrace
+	J=\lbrace 1, 2, \dots, n \rbrace,
 \end{equation}
 
-gdzie $n$ to liczba zadań.
+gdzie $n$ to liczba zadań. Zadaniami są poszczególne płytki, które należy wykonać.
 
 \breakparagraph{}
 Zadanie $j \in J$ jest ciągiem $m$ operacji:
 \begin{equation}
-	O_{1, j}, O_{2, j}, \dots, O_{m, j}
+	O_{1, j}, O_{2, j}, \dots, O_{m, j},
 \end{equation}
+
+Operacja $O_{i,j}$ reprezentuje czynności, które należy wykonać na i-tej płytce na j-tym stanowisku.
 
 \breakparagraph{}
 Zmienne w modelu:
 \begin{itemize}
-	\item $p_{k, j}$ --- czas trwania operacji z zadania $j$ na maszynie $k$
-	\item $S_{k, j}$ --- moment rozpoczęcia operacji z zadania $j$ na maszynie $k$
-	\item $C_{k, j}$ --- moment zakończenia operacji z zadania $j$ na maszynie $k$
+	\item $p_{k, j}$ --- czas trwania operacji zadania $j$ na maszynie $k$
+	\item $S_{k, j}$ --- moment rozpoczęcia operacji zadania $j$ na maszynie $k$
+	\item $C_{k, j}$ --- moment zakończenia operacji zadania $j$ na maszynie $k$
 \end{itemize}
 
 \breakparagraph{}
-Czas przezbrojenia pomiędzy zadaniem $i$ oraz $j$ na $k$-tej maszynie to $s_{i, j}^{k}$ gdzie:
+Czas przezbrojenia pomiędzy zadaniem $i$ oraz $j$ na $k$-tej maszynie oznacza $s_{i, j}^{k}$, przez $( i \neq j \ oraz\ i, j \in J )$.
+
+\breakparagraph{}
+Łatwo zauważyć, że dowolne rozwiązanie problemu może być reprezentowane przez permutację zadania. Przez $\pi$ oznaczamy zbiór wszystkich permutacji elementów zbioru $J$.
+
+Problem polega na wyznaczeniu minimalnego czasu zakończenia procesu. Muszą być przy tym spełnione następujące ograniczenia:
 \begin{itemize}
-	\item $i \neq j$
-	\item  $i, j \in J$
+	\item musi być zachowany porządek technologiczny operacji:
+		  \begin{equation}
+			  O_{1, j} \rightarrow O_{2, j} \rightarrow \dots \rightarrow O_{m, j}
+		  \end{equation}
+	\item każda operacja może być wykonywana tylko przez jedną maszynę,
+	\item żadna maszyna nie może wykonywać więcej niż jednej operacji (uwagi: przypadek kiedy w piecu lutowniczym lutujemy jedną płytę PCB),
+	\item wykonywanie żadnej operacji nie może zostać przerwane przed jej zakończeniem,
+	\item momenty rozpoczęcia operacji oraz czas przezbrojenia nie mogą być ujemne:
+		  \begin{equation}
+			  S_{k, \pi(i)}, s^{k}_{\pi(i), \pi(j)} > 0
+		  \end{equation}
 \end{itemize}
 
-\breakparagraph{}
-Permutacja zadań $\pi = \lbrace \pi(1), \pi(1), \dots, \pi(n) \rbrace$, gdzie $n$ to liczba zadań.
+Wprowadźmy następujące oznaczenia:
+\begin{itemize}
+	\item
+	moment rozpoczęcia operacji $O_{i,\pi(j)}$:
+	\begin{equation}
+		S_{k, \pi(j)}=\max\{C_{k-1, \pi(j)}, C_{k, \pi(j-1)}+s^k_{\pi(j-1), \pi(j)}\},
+	\end{equation}
+	\item
+	moment zakończenia operacji $O_{i,\pi(j)}$:
+	\begin{equation}
+		C_{k, \pi(j)} = S_{k, \pi(j)} + p_{k, \pi(j)},
+	\end{equation}
+	gdzie $ j \in J$ oraz $k \in M$.
+\end{itemize}
+
 
 \breakparagraph{}
-Moment początkowy operacji:
-\begin{equation}
-	S_{k, \pi(j)}=\max\{C_{k-1, \pi(j)}, C_{k, \pi(j-1)}+s^k_{\pi(j-1), \pi(j)}\},
-\end{equation}
-
-\breakparagraph{}
-Obliczenie momentu zakończenia operacji:
-\begin{equation}
-	C_{k, \pi(j)} = S_{k, \pi(j)} + p_{k, \pi(j)}
-\end{equation}
-
-gdzie $ j \in J$ oraz $k \in M$.
-
-\breakparagraph{}
-Moment początkowy procesu:
+Zakładamy przy tym, że moment rozpoczęcia procesu to:
 \begin{equation}
 	S_{1, \pi(1)}=0
 \end{equation}
 
 \breakparagraph{}
-Moment końcowy procesu:
+Zakończenie wszystkich zadań:
 \begin{equation}
-	C_{\max} = 	C_{m, \pi(n)} = S_{m, \pi(n)} + p_{m, \pi(n)}
+	C_{\max}(\pi) = 	C_{m, \pi(n)} = S_{m, \pi(n)} + p_{m, \pi(n)}
 \end{equation}
 
 \breakparagraph{}
-W naszym przypadku optymalizacja procesu będzie polegała na wyznaczeniu optymalnej permutacji zadań $\pi^*$
-w celu znalezienia minimalnego czasu $C_{\max}$
+W naszym przypadku optymalizacja procesu będzie polegała na wyznaczeniu optymalnej permutacji zadań $\pi^*$ takiej, że:
 \begin{equation}
-	C_{\max}^{*} = \min\{C_{m, \pi{(n)}^{*}}\}
+	C_{\max}(\pi^{*}) = \min\{C_{m, \pi{(n)}^{*}}\} \ \pi \in \Pi
 \end{equation}
-
-\breakparagraph{}
-Z racji tego, że proces jest rzeczywisty to posiada pewne ograniczenia:
-\begin{itemize}
-	\item musi być zachowany porządek technologiczny operacji:
-	      \begin{equation}
-	      	O_{1, j} \rightarrow O_{2, j} \rightarrow \dots \rightarrow O_{m, j}
-	      \end{equation}
-	\item każda operacja może być wykonywana tylko przez jedną maszynę,
-	\item żadna maszyna nie może wykonywać więcej niż jednej operacji (uwagi: przypadek kiedy w piecu lutowniczym lutujemy jedną płytę PCB),
-	\item wykonywanie żadnej operacji nie może zostać przerwane przed jej zakończeniem,
-	\item momenty rozpoczęcia operacji oraz czas przezbrojenia nie mogą być ujemne:
-	      \begin{equation}
-	      	S_{k, \pi(i)}, s^{k}_{\pi(i), \pi(j)} > 0
-	      \end{equation}
-\end{itemize}
