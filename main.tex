@@ -1,4 +1,4 @@
-\documentclass[printmode,openany]{mgr}
+\documentclass[printmode, openany]{mgr}
 %opcje klasy dokumentu mgr.cls zostały opisane w dołączonej instrukcji
 
 %poniżej deklaracje użycia pakietów, usunąć to co jest niepotrzebne
@@ -24,6 +24,8 @@
 \usepackage{hhline}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage[center]{caption}
+
 
 %pakiet wypisujący na marginesie etykiety równań i rysunków
 %zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
@@ -69,7 +71,7 @@
 
 \raggedright{
 	\bibliography{bibliography} % wstawia bibliografię korzystając z pliku
-	\bibliographystyle{ieeetr} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+	\bibliographystyle{plunsrt} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
 }
 
 %opcjonalnie może się tu pojawić spis rysunków i tabel

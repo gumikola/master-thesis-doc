@@ -3,7 +3,7 @@
 W pierwszej kolejności przedstawiono ogólny opis procesu montażu płyt drukowanych oraz charakterystykę poszczególnych stanowisk.
 
 \section{Ogólna charakterystyka}
-Problem opisany w  niniejszej pracy dotyczy linii na której są montowane płyty drukowane do finalnych produktów.
+Problem opisany w  niniejszej pracy dotyczy linii, na której są montowane płyty drukowane do finalnych produktów.
 Składa się on z następujących etapów:
 \begin{enumerate}
 	\item Pobranie potrzebnych elementów elektronicznych z magazynu.
@@ -27,38 +27,38 @@ Specyfika procesu:
 	\item piec lutowniczy może lutować jednocześnie kilka płyt drukowanych (liczba ta jest zależna od rozmiaru płyt).
 \end{itemize}
 
-Kompletny proces został przedstawiony przy pomocy diagramu na Rysunku~\ref{DiagFlow}.
+Kompletny proces został przedstawiony symbolicznie na Rysunku~\ref{DiagFlow}.
 Czerwone krawędzie wyznaczają ścieżkę krytyczną procesu.
 Węzły o krawędziach przerywanych są to operacje opcjonalne, zależne od projektu płyty PCB\@.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{./chapters/chapter2/flow_work.pdf}
-	\caption{Diagram przepływu elementów w procesie}
+	\caption{Diagram przepływu elementów w procesie produkcji.}
 	\label{DiagFlow}
 \end{figure}
 
 \section{Opis stanowisk}
-W tej sekcji przedstawimy poszczególne stanowiska oraz pokrótce scharakteryzujemy.
+W tej sekcji szczegółowo scharakteryzowano poszczególne stanowiska.
 
 \subsection{Magazyn}
 Magazyn jest miejscem, od którego zaczyna się cały proces.
 Przechowuje się w nim wszystkie niezbędne elementy elektroniczne (rezystory, kondensatory, układy scalone itd.), gotowe płyty PCB oraz szablony sitodruku dla poszczególnych projektów.
-Aktualny stan magazynowy oraz fizyczna lokalizacja produktów znajduje się w bazie systemu ERP, który koordynuje dostawami elementów do stanowisk.
+Aktualny stan magazynowy oraz fizyczna lokalizacja produktów znajduje się w bazie systemu ERP, który pozwala na planowanie zarządzania zasobami.
 Wszystkie potrzebne elementy są pobierane bezpośrednio przez operatora.
 
 \subsection{Stanowisko z sitodrukiem}
-W kolejnym etapie produkcji gotowa płytka PCB tj. wytrawiony laminat z solder maską trafia na urządzenie sitodruku. Sitodruk jest to maszyna służąca do nakładania pasty lutowniczej wykorzystując szablon z wyciętymi miejscami na pola lutownicze.
+W kolejnym etapie produkcji gotowa płytka PCB, tj.\ wytrawiony laminat z soldermaską, trafia na urządzenie sitodruku. Sitodruk jest to maszyna służąca do nakładania pasty lutowniczej, wykorzystująca szablon z wyciętymi miejscami na pola lutownicze.
 
 \newpage{}
 Maszyny te mogą pracować w kilku trybach~\cite{sitodruk}:
 \begin{enumerate}
 	\item Sitodruk manualny --- najprostsza wersja urządzenia. Cały proces sprowadza się do ręcznego ustawienia szablonu na płytce oraz ręcznego nałożenia pasty przez operatora. Cechuje się gorszą jakością i powtarzalnością operacji w porównaniu do urządzeń przedstawionych poniżej.
-	\item Sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu korzystając przy tym z odpowiedniego systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to jest często wykorzystywane przy prototypowaniu oraz produkcji małoseryjnej.
-	\item Sitodruk automatyczny --- rola operatora sprowadza się do podania płytki i odebrania po naniesieniu pasty (tzw. system offline) lub załadowania podajnika czystymi płytkami a następnie odebraniu gotowych elementów (tzw. rozwiązanie in-line). Wszystkie czynności, takie jak ustawienie szablonu i nałożenie pasty, odbywają się automatycznie.
+	\item Sitodruk półautomatyczny --- operator ustawia płytkę względem szablonu, korzystając przy tym z odpowiedniego systemu wizyjnego. Proces naniesienia pasty odbywa się automatycznie. Rozwiązanie to jest często wykorzystywane przy prototypowaniu oraz produkcji małoseryjnej.
+	\item Sitodruk automatyczny --- rola operatora sprowadza się do podania płytki i odebrania po naniesieniu pasty (tzw.\ system offline) lub załadowania podajnika czystymi płytkami, a następnie odebraniu gotowych elementów (tzw.\ rozwiązanie in-line). Wszystkie czynności, takie jak ustawienie szablonu i nałożenie pasty, odbywają się automatycznie.
 \end{enumerate}
 
-W rozpatrywanym problemie jest stosowany sitodruk manualny (Rysunek~\ref{sitodruk}). Operator przed nałożeniem pasty na płytę PCB musi przezbroić maszynę. Sprowadza się to do pobrania szablonu z magazynu oraz ustawieniu go na tej maszynie. W następnym kroku następuje manualne naniesienie pasty.
+W rozpatrywanym problemie stosowany jest sitodruk manualny (Rysunek~\ref{sitodruk}). Operator przed nałożeniem pasty na płytę PCB musi przezbroić maszynę. Sprowadza się to do pobrania szablonu z magazynu oraz ustawieniu go na tej maszynie. W następnym kroku wykonywane jest manualne naniesienie pasty.
 
 \begin{figure}[H]
 	\centering
@@ -67,9 +67,9 @@ W rozpatrywanym problemie jest stosowany sitodruk manualny (Rysunek~\ref{sitodru
 	\label{sitodruk}
 \end{figure}
 
-\newpage{}
+
 \subsection{Automat pick\&place}
-Automat pick and place jest to maszyna, która umożliwia w precyzyjny sposób układać komponenty SMD na płytkach PCB korzystając z odpowiedniego systemu wizyjnego~\cite{automatp&p1}. W rozpatrywanym procesie wykorzystywany jest automat M10V firmy Mechatronika (Rysunek~\ref{automat_pick_place}). Średnia wydajność maszyny to około 1200 --- 1600 komponentów na godzinę.
+Automat pick and place jest to maszyna, która umożliwia w precyzyjny sposób układać komponenty SMD na płytkach PCB, korzystając z odpowiedniego systemu wizyjnego~\cite{automatp&p1}. W rozpatrywanym procesie wykorzystywany jest automat M10V firmy Mechatronika (Rysunek~\ref{automat_pick_place}). Średnia wydajność maszyny to około 1200 --- 1600 komponentów na godzinę.
 
 \breakparagraph{}
 Maszynę tę cechuje~\cite{automatp&p2}:
@@ -78,7 +78,7 @@ Maszynę tę cechuje~\cite{automatp&p2}:
 	\item pełna automatyzacja nanoszenia elementów na płytę drukowaną,
 	\item automatyczna korekcja położenia na podstawie znaczników (ang.\ fiducials),
 	\item korygowanie elementów na podstawie wykrycia złych oznaczeń na płycie,
-	\item automatyczna zmiana dysz umożliwiająca nanoszenie różnej wielkości elementów ,
+	\item automatyczna zmiana dysz, umożliwiająca nanoszenie różnej wielkości elementów,
 	\item automatyczne podawanie luźnych elementów (po wcześniejszej kalibracji),
 	\item dane dotyczące projektów mogą pochodzić z różnych systemów danych CAD lub być wprowadzane ręcznie w trybie TEACH-IN\@.
 \end{itemize}
@@ -89,8 +89,8 @@ Maszynę przed rozpoczęciem pracy z płytą PCB należy odpowiednio przezbroić
 Elementy mogą być dostarczane na kilka sposobów:
 \begin{itemize}
 	\item taśmy: 8 mm, 12 mm, 16 mm, 24 mm, 32 mm, 44 mm,
-	\item tacki JEDEC --- opakowanie w kształcie matrycy w której są przechowywane układy scalone,
-	\item tuby (ang. sticks) SO8–PLCC84 --- opakowanie antystatyczne w którym elementy są ułożone w lini,
+	\item tacki JEDEC --- opakowanie w kształcie matrycy, w której przechowywane są układy scalone,
+	\item tuby (ang.\ sticks) SO8–PLCC84 --- opakowanie antystatyczne, w którym elementy są ułożone równolegle,
 	\item elementy luzem.
 \end{itemize}
 
@@ -108,11 +108,11 @@ Piec lutowniczy jest to urządzenie, które umożliwia zastosowanie techniki lut
 \breakparagraph{}
 Profil termiczny został schematycznie przedstawiony na Rysunku~\ref{schemat_termiczny} i składa się z następujących etapów:
 \begin{description}
-	\item[Etap 1:] Nagrzewanie wstępne (ang. preheat) --- wstępne nagrzewanie o jednostajnym wzroście temperatury w tempie 1--3\degree{C}, do osiągnięcia około 150\degree{C}. W tej fazie następuje częściowe odparowanie topnika.
-	\item[Etap 2:] Oczyszczanie (ang. soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usunięcie tlenków ze stopu lutowniczego. Etap ten trwa od 60 do 120 sekund.
-	\item[Etap 3:] Jednostajne rozgrzanie do rozpływu (ang. ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidusu (temperatura przemiany ciała stałego w stan ciekły) stopu lutowniczego.
-	\item[Etap 4:] Rozpływ (ang. reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi w temperaturze od 215 do 250\degree{C} (zależne od użytego stopu lutowniczego). Na tym etapie płynny stop tworzy połączenie pomiędzy polem lutowniczym, a elementem elektronicznym. Czas trwania rozpływu to od 30 do 300 sekund.
-	\item[Etap 5:] Chłodzenie (ang. cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o jednostajnym spadku 3--4\degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenie termiczne, które są groźne dla lutujących elementów.
+	\item[Etap 1:] Nagrzewanie wstępne (ang.\ preheat) --- nagrzewanie o jednostajnym wzroście temperatury w tempie 1--3\degree{C}, do osiągnięcia około 150\degree{C}. W tej fazie następuje częściowe odparowanie topnika.
+	\item[Etap 2:] Oczyszczanie (ang.\ soak) --- aktywacja topnika umożliwiająca oczyszczenie chemiczne powierzchni złącza oraz usunięcie tlenków ze stopu lutowniczego. Etap ten trwa od 60 do 120 sekund.
+	\item[Etap 3:] Jednostajne rozgrzanie do rozpływu (ang.\ ramp to peak) --- szybkie rozgrzanie mające na celu osiągnięcia temperatury likwidusu (temperatura przemiany ciała stałego w stan ciekły) stopu lutowniczego.
+	\item[Etap 4:] Rozpływ (ang.\ reflow) --- faza zasadnicza lutowania rozpływowego. Zachodzi\linebreak w temperaturze od 215 do 250\degree{C} (zależne od użytego stopu lutowniczego). Na tym etapie płynny stop tworzy połączenie pomiędzy polem lutowniczym, a elementem elektronicznym. Czas trwania rozpływu to od 30 do 300 sekund.
+	\item[Etap 5:] Chłodzenie (ang.\ cooling) --- ostatni etap polegający na możliwe szybkim schłodzeniu o jednostajnym spadku 3--4\degree{C}. Zbyt gwałtowne schłodzenie może spowodować naprężenia termiczne, które są groźne dla lutujących elementów.
 \end{description}
 
 \begin{figure}[H]
@@ -147,7 +147,7 @@ W rozpatrywanym procesie jest wykorzystywany piec eC-reflow-mate firmy Eurocircu
 \end{figure}
 
 \subsection{Stanowisko do prac ręcznych}
-Operacje przeprowadzane przez operatora na tym stanowisku polegają na nakładaniu i lutowaniu elementów oraz kontrolę wizyjną.
+Operacje przeprowadzane przez operatora na tym stanowisku polegają na nakładaniu\linebreak i lutowaniu elementów oraz kontroli wizyjnej.
 
 \breakparagraph{}
 Stanowisko to jest wyposażone w następujący osprzęt:
@@ -159,4 +159,4 @@ Stanowisko to jest wyposażone w następujący osprzęt:
 	\item mikroskop.
 \end{itemize}
 
-W bardziej zaawansowanych technologicznie procesach wytwarzania, wszystkie prace są wykonywane automatycznie.
+W bardziej zaawansowanych technologicznie procesach wytwarzania wszystkie prace są wykonywane automatycznie.

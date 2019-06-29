@@ -6,10 +6,10 @@ skinparam defaultTextAlignment center
 start
 :Pobierz zadania do wykonania;
 :Wygeneruj wszystkie permutacje|
-while (Czy ten czas jest krótszy?) is (Tak)
-  :Wczytaj permutacje zadań;
+while (Czy istnieje permutacja?) is (Tak)
+  :Wczytaj permutację zadań;
   :Oblicz moment ostatniego zadania;
-  if (Czy jest to najkrótszy czas?) then (Tak)
+  if (Czy ten czas jest krótszy?) then (Tak)
     :Zapisz ten czas;
   else (Nie)
   endif

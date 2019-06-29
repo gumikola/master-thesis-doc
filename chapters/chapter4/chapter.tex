@@ -1,7 +1,7 @@
 \chapter{Oprogramowanie}
 
 Do rozwiązania opisanego w poprzednim rozdziale problemu skonstruowano i zaimplementowano dwa algorytmy: dokładny oraz przybliżony.
-Ze względu na to, że problem przepływowy jest NP-trudny, często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest wykłądnicza złożoność obliczeniowa. Rozpatrywany w prac problem jest pewnym uogólnieniem problemu przepływowego, jest więc także NP-trudny.
+Ze względu na to, że problem przepływowy jest NP-trudny, często rezygnuje się z algorytmów dokładnych. Powodem takiego stanu rzeczy jest wykładnicza złożoność obliczeniowa. Rozpatrywany w pracy problem jest pewnym uogólnieniem problemu przepływowego, jest więc także NP-trudny.
 
 W przedstawionym przypadku użyty został algorytm dokładny (przegląd zupełny), ponieważ liczba zadań jest niewielka oraz planowanie w systemie jest offline (nie ma ograniczeń czasowych na uzyskanie rozwiązania).
 W celu porównania wybrano algorytm metaheurystyczny (symulowane wyżarzanie), który nie daje rozwiązania optymalnego, lecz dostatecznie dobre w krótkim czasie. Będzie on stosowany w przypadku produkcji większej liczby płytek.
@@ -9,12 +9,12 @@ W celu porównania wybrano algorytm metaheurystyczny (symulowane wyżarzanie), k
 \section{Implementacja}
 Algorytm zaimplementowano w języku C++ przy wykorzystaniu środowiska Qt. Jest to zestaw darmowych narzędzi i bibliotek, służących do tworzenia aplikacji okienkowych oraz konsolowych. Niewątpliwą zaletą Qt jest jego wieloplatformowość, dzięki czemu przy użyciu jednego kodu bazowego, może on być zaimplementowany w różnych środowiskach (Windows, Linux, macOS, Android oraz systemy wbudowane).
 
-Przykład działania programu na Rysunku~\ref{app_out}
+Działania programu zostało pokazane na Rysunku~\ref{app_out}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{chapters/chapter4/app_out.png}
-	\caption{Wyjście programu.}
+	\includegraphics[scale=0.622]{chapters/chapter4/app_out.png}
+	\caption{Działanie programu w terminalu Linuxa.}
 	\label{app_out}
 \end{figure}
 
@@ -41,7 +41,7 @@ Projekt bazy danych składa się z trzech tabel (Rysunek~\ref{baza_danych}):
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.9]{chapters/chapter4/db_crop.pdf}
-	\caption{Struktura bazy danych}
+	\caption{Struktura bazy danych.}
 	\label{baza_danych}
 \end{figure}
 
@@ -103,48 +103,52 @@ Opis poszczególnych pól struktur baz danych został przedstawiony w Tabelach~\
 	\label{oper}
 \end{table}
 
-Dane wprowadzone zostały do bazy danych przy pomocy aplikacji DataGrip. Na rysunkach~\ref{dg:proj}--\ref{dg:changeover} przedstawiono tą operację dla każdej tabeli.
+\breakparagraph{}
+Dane  wprowadzone do bazy danych przy pomocy aplikacji DataGrip. Na rysunkach~\ref{dg:proj}--\ref{dg:changeover} przedstawiono wprowadzanie danych do każdej tabeli.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapters/chapter4/projects_db.png}
-	\caption{Tabela ``projects'' w DataGrip}
+	\caption{Tabela ``projects'' w DataGrip.}
 	\label{dg:proj}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapters/chapter4/opera_db.png}
-	\caption{Tabela ``operation\_time'' w DataGrip}
+	\caption{Tabela ``operation\_time'' w DataGrip.}
 	\label{dg:oper}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.9]{chapters/chapter4/changeover_db.png}
-	\caption{Tabela ``changeover\_time'' w DataGrip}
+	\caption{Tabela ``changeover\_time'' w DataGrip.}
 	\label{dg:changeover}
 \end{figure}
 
 \section{Przegląd zupełny}
 
-Przegląd zupełny (ang. Brute-force search) jest to algorytm polegający na wyznaczeniu wszystkich możliwych permutacji zadań (rozwiązań dopuszczalnych), a następnie wybraniu z tego zbioru najlepszego rozwiązania. Jest to algorytm dokładny, przez co rozwiązanie jest zawsze optymalne, lecz niestety okupione dużą czasochłonnością obliczeń.
+Przegląd zupełny (ang.\ brute-force search) jest to algorytm polegający na wyznaczeniu wszystkich możliwych permutacji zadań (rozwiązań dopuszczalnych), a następnie wybraniu z tego zbioru najlepszego rozwiązania. Jest to algorytm dokładny, przez co rozwiązanie jest zawsze optymalne, lecz niestety okupione dużą czasochłonnością obliczeń. Diagram na Rysunku~\ref{brute_force} przedstawia ideę tego algorytmu.
 
-Diagram na Rysunku~\ref{brute_force} przedstawia ideę algorytmu. W celu wygenerowania wszystkich permutacji zadań, wykorzystano algorytm porządku leksykograficznego (Rysunek~\ref{gen_perm}).
+W celu wygenerowania wszystkich permutacji zadań, wykorzystano algorytm porządku leksykograficznego, który jest opisany w literaturze~\cite{legorder}. Schematycznie został on przedstawiony na Rysunku~\ref{gen_perm}.
 
 \section{Metoda symulowanego wyżarzania}
-Symulowane wyżarzanie (ang. Simulated annealing,w skrócie SA) to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten jest oparty na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem, ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
+Symulowane wyżarzanie (ang.\ simulated annealing, w skrócie SA) jest to kombinatoryczna metoda optymalizacji oparta na szukaniu losowo rozwiązania~\cite{sa}. Algorytm ten opiera się na analogii pomiędzy zjawiskiem wyżarzania metali, a optymalizacją złożonych problemów kombinatorycznych. Wiele tych problemów jest NP-trudnych, co powoduje, że istnienie algorytmów dokładnych, o wielomianowym czasie obliczeniowym, jest niemożliwe. Symulowane wyżarzanie jest zatem idealnym wyborem, ze względu na jego elastyczność, szybkość działania oraz jakość rozwiązań, przez co nie ma ograniczeń przy doborze do problemu.
 
-Cechą która odróżnia metodę symulowanego wyżarzania od innych metod metaheurystyczny to używanie funkcji akceptacji. Funkcja akceptacji pozwala na opuszczanie ekstremum lokalnego przez przyjęcie chwilowo gorszego rozwiązania. Wzór na funkcję akceptacji:
+Cechą, która odróżnia metodę symulowanego wyżarzania od innych metod metaheurystyczny jest używanie funkcji akceptacji. Funkcja akceptacji pozwala na opuszczanie ekstremum lokalnego przez przyjęcie chwilowo gorszego rozwiązania.
+
+\newpage
+Wzór na funkcję akceptacji:
 \begin{equation}
-	p=exp(\frac{F(x')-F(x)}{T}),
+	p=\exp\left(\frac{F(x')-F(x)}{T}\right),
 \end{equation}
 
 gdzie:
 \begin{itemize}
 	\item $T$ --- bieżąca temperatura,
 	\item $x'$ --- nowe wygenerowane rozwiązanie,
-	\item $x$ --- rozwiązanie bazowe
+	\item $x$ --- rozwiązanie bazowe.
 \end{itemize}
 
 W algorytmie SA istotną rolę odgrywają: dobór odpowiednich parametrów, strategii schładzania oraz dobranie techniki ruchu po przestrzeni (generowanie otoczeń).
@@ -160,39 +164,41 @@ Symulowane wyżarzanie posiada 3 parametry wpływające na jego działanie:
 \breakparagraph{}
 Stosuję się najczęściej dwa schematy schładzania~\cite{Smutnicki2002As}:
 \begin{itemize}
-	\item geometryczny $T = \lambda T$
-	\item logarytmiczny $T = T /(1 + \lambda T)$
+	\item geometryczny $T = \lambda T$,
+	\item logarytmiczny $T = T /(1 + \lambda T)$.
 \end{itemize}
 
 \breakparagraph{}
-Wybór strategii schładzania zależy w dużej mierze od problemu, jaki będzie rozwiązywany przez algorytmem.
+Wybór strategii schładzania zależy w dużej mierze od problemu, który będzie rozwiązywany przez algorytm.
 
 \breakparagraph{}
-W metodzie symulowanego wyżarzania tak jak w wielu innych metaheurystykach ważny jest wybór techniki generowania otoczeń. Najpopularniejsze z nich to:
+W metodzie symulowanego wyżarzania, tak jak w wielu innych metaheurystykach, ważny jest wybór techniki generowania otoczeń. Najpopularniejsze z nich to:
 \begin{itemize}
 	\item zamień --- wybranie dwóch losowych elementów i ich zamiana miejscami,
-	\item zamień sąsiednie --- wybranie losowego zadania, a następnie zamiana kolejności z następnym zadaniem na liście,
-	\item wstaw --- wybranie losowego elementu, który przesuwamy na losową pozycję na liście.
+	\item zamień sąsiednie --- wybranie losowego zadania, a następnie zamiana kolejności\linebreak z następnym zadaniem na liście,
+	\item wstaw --- wybranie losowego elementu i przesunięcie go na losową pozycję na liście.
 \end{itemize}
 
 
 \breakparagraph{}
 W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
-\raggedbottom{}
 
+\breakparagraph{}
+Diagramy wszystkich zastosowanych algorytmów zostały przedstawione w kolejnej sekcji. Parametry zostały dobrane eksperymentalnie, a szczegółowy opis ich wpływu na działanie algorytmu symulowanego wyżarzania, znajduje się przy omówieniu wyników obliczeń.
+\raggedbottom{}
 
 \section{Diagramy}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.65]{chapters/chapter4/brute_force.pdf}
-	\caption{Diagram algorytmu ``Przegląd zupełny''}
+	\includegraphics[]{chapters/chapter4/brute_force.pdf}
+	\caption{Diagram algorytmu ``Przegląd zupełny''.}
 	\label{brute_force}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{chapters/chapter4/gen_perm.pdf}
-	\caption{Diagram algorytmu ``Porządek leksykograficzny''}
+	\caption{Diagram algorytmu ``Porządek leksykograficzny''.}
 	\label{gen_perm}
 \end{figure}
 
@@ -201,6 +207,6 @@ W pracy zaimplementowano podstawową wersję algorytmu (Rysunek~\ref{sa}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.67]{chapters/chapter4/sa.pdf}
-	\caption{Diagram algorytmu ``Symulowane wyżarzanie''}
+	\caption{Diagram algorytmu ``Symulowane wyżarzanie''.}
 	\label{sa}
 \end{figure}

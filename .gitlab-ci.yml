@@ -4,15 +4,6 @@
 # possible alternative: https://github.com/natlownes/docker-latex
 image: tianon/latex
 
-stages:
-  - test
-  - build
-
-lint:
-    stage: test
-    script:
-    - chktex main.tex -n 24
-
 build:
     stage: build
     script:
